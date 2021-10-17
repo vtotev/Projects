@@ -1,7 +1,15 @@
 package interview.task.themarket.models.binding;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 public class ContractCreateBindingModel {
+    @NotNull
+    @Positive
     private Long itemId;
+
+    @NotNull
+    @Positive
     private Double price;
 
     public ContractCreateBindingModel() {
