@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common::head"></head>
+<body class="body-main">
+<header th:replace="fragments/common::navigation"></header>
+
+<main role="main">
+    <div class="jumbotron">
+        <div class="container text-dark text-center">
+            <h1 class="display-3 ">
+                <strong class="rounded border-white pl-3 font-weight-bold">Add New Deal</strong></h1>
+        </div>
+        <div class="container bg-blur rounded p-5 mt-5 w-75">
+            <form action="/deals/add" method="POST" th:object="${dealAddBindingModel}"
+                  class=" text-center text-light">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <select id="name" name="name" class="custom-select" th:errorclass="bg-danger"
+                                aria-describedby="nameHelpInline">
+                            <option value="" selected>Product</option>
+                            <option th:each="p : ${products}"
+                                    th:text="${p.name}"
+                                    th:value="${p.name}">Product</option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="nameHelpInline" class="bg-danger text-light rounded">
+                            You must select the category.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="categoryDeals" class="col-sm-2 col-form-label">Category</label>
+                    <div class="col-sm-10">
+                        <select id="categoryDeals" name="categoryDeals" class="custom-select" th:errorclass="bg-danger"
+                                aria-describedby="categoryHelpInline">
+                            <option value="" selected>Category</option>
+                            <option th:each="c : ${T(exercise.GroceriesShop.model.entity.enums.CategoryDealsEnum).values()}"
+                                    th:text="${c.description}"
+                                    th:value="${c.name()}">Add Deal</option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('categoryDeals')}" th:errors="*{categoryDeals}" id="categoryHelpInline" class="bg-danger text-light rounded">
+                            You must select the category.
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-50">Add Product</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/common::footer"></footer>
+
+</body>
+</html>

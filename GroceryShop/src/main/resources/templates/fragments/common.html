@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Grocery Store Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+
+<body>
+
+<header th:fragment="navigation">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/add">Add Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deals/add">Add Deals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shopping">Shopping</a>
+                </li>
+            </ul>
+            <a class="nav-link" href="/">
+                <img width="50px" src="/images/logo.png" alt="Logo">
+            </a>
+        </div>
+    </nav>
+</header>
+
+<footer th:fragment="footer" class="container text-white bg-blur text-center">
+    <p>&copy;Grocery Store © 2021 Valeri Totev</p>
+</footer>
+
+</body>
+</html>
