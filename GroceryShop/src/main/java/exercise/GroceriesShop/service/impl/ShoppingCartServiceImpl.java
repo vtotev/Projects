@@ -49,7 +49,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public Integer getTotalSum() {
-        return shoppingCartRepository.findAll().stream().mapToInt(ShoppingCart::getPrice).sum() - getCheapestProduct() - getHalfPriceProduct();
+        List<ShoppingCart> allProducts = shoppingCartRepository.findAll();
+        return allProducts.stream().mapToInt(ShoppingCart::getPrice).sum() - getCheapestProduct(allProducts) - getHalfPriceProduct(allProducts);
     }
 
     @Override
@@ -58,14 +59,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
 
-    private Integer getCheapestProduct() {
+    private Integer getCheapestProduct(List<ShoppingCart> allProducts) {
         List<Deal> dealsByCategory = categoryDealService.getDealsByCategory(CategoryDealsEnum.PAY_2_GET_3);
-        List<ShoppingCart> cartAll = shoppingCartRepository.findAll();
 
         int prodCount = 0;
         Integer cheapestProductPrice = Integer.MAX_VALUE;
 
-        for (ShoppingCart prod : cartAll) {
+        for (ShoppingCart prod : allProducts) {
 
             for (Deal deal : dealsByCategory) {
                 if (prod.getName().toLowerCase().equals(deal.getName().toLowerCase())) {
@@ -87,13 +87,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return cheapestProductPrice;
     }
 
-    private Integer getHalfPriceProduct() {
+    private Integer getHalfPriceProduct(List<ShoppingCart> allProducts) {
         List<Deal> dealsByCategory = categoryDealService.getDealsByCategory(CategoryDealsEnum.BUY_1_GET_1_HALF_PRICE);
-        List<ShoppingCart> cartAll = shoppingCartRepository.findAll();
 
         int prodCount = 0;
         Integer cheapestProductPrice = Integer.MAX_VALUE;
-        for (ShoppingCart prod : cartAll) {
+        for (ShoppingCart prod : allProducts) {
             for (Deal deal : dealsByCategory) {
                 if (prod.getName().toLowerCase().equals(deal.getName().toLowerCase())) {
                     prodCount++;
