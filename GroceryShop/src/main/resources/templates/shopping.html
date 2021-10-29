@@ -15,7 +15,7 @@
             <div class="row mt-3 mb-3">
 
                 <div class="col-5 rounded m-auto" style="height: 55vh; overflow: auto">
-                    <h3 class="mySticky bg-gray text-light rounded">All products</h3>
+                    <h3 class="mySticky bg-gray text-light rounded mt-1">All products</h3>
                     <div th:each="p : ${allProducts}" th:object="${p}" class="mt-3 rounded badge-info">
                         <img class="mr-2" src="/images/product.png" alt="Food" width="50px" height="50px">
                         <span th:text="|Name: *{name} Price: *{price} c|"></span>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col-5 rounded m-auto" style="height: 55vh; overflow: auto">
-                    <h3 class="mySticky bg-gray text-light rounded">Products to buy</h3>
+                    <h3 class="mySticky bg-gray text-light rounded mt-1">Products to buy</h3>
                     <div th:each="p : ${productsToBuy}" th:object="${p}" class="mt-3 rounded badge-success">
                         <img class="mr-2" src="/images/product.png" alt="Food" width="50px" height="50px">
                         <span th:text="|Name: *{name} Price: *{price} c|"></span>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <a href="/shopping/buy/all" class="btn btn-danger" th:text="|Buy all products for ${total}|"></a>
+            <a href="/shopping/buy/all" class="btn btn-danger mb-2" th:text="|Buy all products for ${total}|"></a>
         </div>
     </div>
 </main>
